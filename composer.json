@@ -1,0 +1,48 @@
+{
+    "name": "inisiatif/sequence",
+    "description": "Sequence package using in Inisiatif Zakat Indonesia",
+    "license": "proprietary",
+    "type": "library",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.packagist.com/inisiatif/"
+        },
+        {
+            "packagist.org": false
+        }
+    ],
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "illuminate/database": "^7.0",
+        "illuminate/support": "^7.0",
+        "webmozart/assert": "^1.9"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.3.1",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inisiatif\\Package\\Sequence\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Inisiatif\\Package\\Sequence\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.1-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
