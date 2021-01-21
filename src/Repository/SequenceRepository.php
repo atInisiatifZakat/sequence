@@ -7,6 +7,7 @@ namespace Inisiatif\Package\Sequence\Repository;
 use DateTime;
 use DateTimeInterface;
 use Webmozart\Assert\Assert;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Inisiatif\Package\Sequence\Contracts\SequenceInterface;
@@ -43,10 +44,16 @@ final class SequenceRepository implements SequenceRepositoryInterface
 
     public function findOneUsingCode(string $code, ?DateTimeInterface $date = null): ?SequenceInterface
     {
-        $model = $this->builder->where('code', $code)
-            ->when($date, function (Builder $builder) use ($date) {
-                return $builder->whereDate('date', $date);
-            })->first();
+        $query = $this->builder->where('code', $code);
+
+        if ($date !== null) {
+            $query = $query->when($date, function (Builder $builder) use ($date) {
+                return $builder->whereDate('date', Carbon::instance($date)->toDateString());
+            });
+        }
+
+        /** @var SequenceInterface|null $model */
+        $model = $query->first();
 
         Assert::nullOrIsInstanceOf($model, SequenceInterface::class);
 
@@ -69,7 +76,7 @@ final class SequenceRepository implements SequenceRepositoryInterface
             'sequence' => 0,
         ]);
 
-        Assert::nullOrIsInstanceOf($model, SequenceInterface::class);
+        Assert::isInstanceOf($model, SequenceInterface::class);
 
         return $model;
     }
