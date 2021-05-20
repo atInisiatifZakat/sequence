@@ -12,7 +12,13 @@ interface SequenceRepositoryInterface
 
     public function increment(SequenceInterface $sequence): bool;
 
-    public function findOneUsingCode(string $code, ?DateTimeInterface $date): ?SequenceInterface;
+    /**
+     * @return mixed
+     */
+    public function findOneUsingCode(string $code, ?DateTimeInterface $date);
 
-    public function findOneOrCreateUsingCode(string $code, ?DateTimeInterface $date): SequenceInterface;
+    /**
+     * @return mixed
+     */
+    public function findOneOrCreateUsingCode(string $code, ?DateTimeInterface $date);
 }
