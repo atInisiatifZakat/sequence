@@ -3,17 +3,8 @@
     "description": "Sequence package using in Inisiatif Zakat Indonesia",
     "license": "proprietary",
     "type": "library",
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://repo.packagist.com/inisiatif/"
-        },
-        {
-            "packagist.org": false
-        }
-    ],
     "require": {
-        "php": "~8.0.0|~8.1.0",
+        "php": "^8.1",
         "ext-json": "*",
         "illuminate/database": "^9.19",
         "illuminate/support": "^9.19",
